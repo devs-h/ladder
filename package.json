@@ -1,0 +1,21 @@
+{
+  "name": "ladder-game",
+  "module": "index.ts",
+  "type": "module",
+    "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "tsup": "^8.5.0"
+  }
+}
