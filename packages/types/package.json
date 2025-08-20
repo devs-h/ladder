@@ -1,0 +1,5 @@
+{
+  "name": "@ladder/types",
+  "type": "module",
+  "main": "src/index.ts"
+}

@@ -1,15 +1,14 @@
-# ladder-game
+# ladder
 
-To install dependencies:
+1. 작업순서
 
-```bash
-bun install
-```
+   1. 작업하기로 정한 packages/무언가에서 작업을 합니다.
+   1. 작업하다 다른곳에 사용해야하면 그때 작성자가 공통화를 진행합니다. (미리 공통화 하지 않습니다.)
 
-To run:
+1. 외부 라이브러리에 대해
 
-```bash
-bun run index.ts
-```
+   1. 사용을 지양합니다.
+   1. 외부라이브러리보다 차라리 복붙 or ai로 생성해서 내부 코드화 하는게 어떨까 싶어요.
 
-This project was created using `bun init` in bun v1.2.5. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+1. 공통 패키지.
+   1. 타입스

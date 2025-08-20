@@ -1,21 +1,22 @@
 {
-  "name": "ladder-game",
-  "module": "index.ts",
+  "name": "ladder-workspace",
+  "version": "0.1.0",
+  "private": true,
   "type": "module",
-    "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "test": "vitest",
-    "lint": "eslint .",
-    "prepublishOnly": "npm run build && npm test"
-  },
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ],
   "devDependencies": {
-    "@types/bun": "latest"
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "ladder:dev": "bun run -F ladder dev",
+    "demo:dev": "bun run -F demo dev",
+    "ladder:build": "bun run -F ladder build",
+    "build": "bun run ladder:build"
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "dependencies": {
-    "tsup": "^8.5.0"
   }
 }

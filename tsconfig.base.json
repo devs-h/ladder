@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // ⭐️ 프로젝트 루트를 기준으로 경로를 해석합니다.
     // Environment setup & latest features
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -23,6 +24,14 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+    "forceConsistentCasingInFileNames": true,
+
+    "paths": {
+      "@ladder/dom": ["./packages/dom/src/index.ts"],
+      "@ladder/core": ["./packages/core/src/index.ts"],
+      "@ladder/canvas": ["./packages/canvas/src/index.ts"],
+      "@ladder/types": ["./packages/types/src/index.ts"]
+    }
   }
 }
