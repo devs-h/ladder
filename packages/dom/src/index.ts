@@ -5,6 +5,6 @@ export class LadderDom extends LadderCanvas {
     super();
     this.wrapEl = document.createElement("div");
     this.wrapEl.append(this.canvasEl);
-    console.log(123123);
+    console.log(13123);
   }
 }

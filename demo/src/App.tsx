@@ -5,7 +5,6 @@ import { useLayoutEffect, useRef } from "react";
 const ladderDom = new LadderDom();
 export function App() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  console.log("ladderDom");
   useLayoutEffect(() => {
     wrapRef.current?.append(ladderDom.wrapEl);
   }, []);

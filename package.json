@@ -11,11 +11,10 @@
     "concurrently": "^9.0.0"
   },
   "scripts": {
-    "dev:demo": "bun run -F demo dev",
+    "dev:demo": "bun --hot demo/src/index.tsx",
     "dev:core": "bun run -F @ladder/core dev",
     "dev:canvas": "bun run -F @ladder/canvas dev",
     "dev:dom": "bun run -F @ladder/dom dev",
-    "dev": "concurrently -n demo,core,canvas,dom -c auto \"bun run -F demo dev\" \"bun run -F @ladder/core dev\" \"bun run -F @ladder/canvas dev\" \"bun run -F @ladder/dom dev\"",
     "build:core": "bun run -F @ladder/core build",
     "build:canvas": "bun run -F @ladder/canvas build",
     "build:dom": "bun run -F @ladder/dom build",
