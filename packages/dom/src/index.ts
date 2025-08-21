@@ -1,5 +1,10 @@
-export class LadderCore {
+import { LadderCanvas } from "@ladder/canvas";
+export class LadderDom extends LadderCanvas {
+  public wrapEl: HTMLElement;
   constructor() {
-    return {}; // 사다리게임을 만들 수 있는 데이터 넘겨주기
+    super();
+    this.wrapEl = document.createElement("div");
+    this.wrapEl.append(this.canvasEl);
+    console.log(123123);
   }
 }
