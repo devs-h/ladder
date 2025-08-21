@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig.base.json", // Path to the root config file
+
   "include": ["src"]
 }

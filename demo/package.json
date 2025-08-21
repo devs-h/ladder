@@ -13,6 +13,7 @@
   "dependencies": {
     "react": "^19",
     "react-dom": "^19",
+    "@ladder/dom": "workspace:*",
     "@ladder/core": "workspace:*",
     "@ladder/canvas": "workspace:*",
     "@ladder/types": "workspace:*"

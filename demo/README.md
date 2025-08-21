@@ -1,21 +1,5 @@
-# bun-react-template
+# ladder-demo
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To start a development server:
-
-```bash
-bun dev
-```
-
-To run for production:
-
-```bash
-bun start
-```
-
-This project was created using `bun init` in bun v1.2.5. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+1. 데모는 빌드 한 후 실제 배포와 동일한 환경에서 테스트한다.(packages/\*내부에서 빌드하지 않고 가져다 쓰는 방식으로는 하지 않는다.)
+1. 각자 데모를 편하게 쓰고 배포시에 데모는 포함하지 않는다.
+1.

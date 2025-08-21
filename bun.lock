@@ -16,6 +16,7 @@
       "dependencies": {
         "@ladder/canvas": "workspace:*",
         "@ladder/core": "workspace:*",
+        "@ladder/dom": "workspace:*",
         "@ladder/types": "workspace:*",
         "react": "^19",
         "react-dom": "^19",
@@ -60,6 +61,7 @@
       "devDependencies": {
         "@ladder/canvas": "workspace:*",
         "@ladder/core": "workspace:*",
+        "@ladder/types": "workspace:*",
         "@types/bun": "latest",
       },
       "peerDependencies": {

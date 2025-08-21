@@ -1,6 +1,8 @@
 import "./index.css";
 import { APITester } from "./APITester";
-
+import { LadderDom } from "@ladder/dom";
+const ladderDom = new LadderDom();
+console.log(ladderDom);
 export function App() {
   return (
     <div className="app">
