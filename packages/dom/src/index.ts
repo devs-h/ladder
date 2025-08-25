@@ -1,36 +1,33 @@
 import { LadderCanvas } from "@ladder/canvas";
-const defaultClassNames = {
+const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
   canvas: "ladder__canvas",
   "input-wrap": "ladder__input-wrap",
   "input-wrap--result": "ladder__input-wrap--result",
 
   "start-btn": "start-btn",
-  // "end-btn": "end-btn",
 };
 export class LadderDom extends LadderCanvas {
   public wrapEl: HTMLElement;
-  public inputs: HTMLInputElement[];
+  public inputs: string[];
   public startBtn: HTMLButtonElement;
   public endBtn: HTMLButtonElement;
+
+  // private inputEls: HTMLInputElement[];
+  private length: number;
   constructor(props: {
-    className?: {
-      wrap: string;
-      canvas: string;
-      "input-wrap": string;
-      "input-wrap--result": string;
-      "start-btn": "start-btn";
-      // "end-btn": "end-btn";
-    };
-    inputs: string[];
+    className?: typeof DEFAULT_CLASSNAMES;
+    inputs?: string[];
   }) {
     super();
-    // props 주입
-    const className = props.className ?? defaultClassNames;
-    const inputs = props.inputs;
-    const LENGTH = inputs.length;
+    // this.inputEls = [];
 
-    if (LENGTH % 2)
+    // props 주입
+    const className = props.className ?? DEFAULT_CLASSNAMES;
+    const inputs = props.inputs;
+    this.length = inputs?.length ?? 6;
+
+    if (this.length % 2)
       throw new Error(
         "인풋은 짝수개여야 합니다. 인풋 아웃풋의 갯수는 같아야 합니다."
       );
@@ -40,7 +37,6 @@ export class LadderDom extends LadderCanvas {
     this.wrapEl = document.createElement("div");
     this.startBtn = document.createElement("button");
     this.endBtn = document.createElement("button");
-
     const inputWrap = document.createElement("div");
     const inputResultWrap = document.createElement("div");
 
@@ -53,23 +49,28 @@ export class LadderDom extends LadderCanvas {
     this.endBtn.innerText = "끝내기";
     this.startBtn.classList.add(className["start-btn"]);
     // this.endBtn.classList.add(className["end-btn"]);
-    this.startBtn.onclick = this.draw;
+    this.startBtn.onclick = this.handleStart.bind(this);
     // this.startBtn.addEventListener("click", this.handleStart.bind(null));
     //인풋 클래스 및 어팬드
 
-    this.inputs = Array(LENGTH).fill(null);
+    this.inputs = Array(this.length).fill(null);
     inputWrap.classList.add(className["input-wrap"]);
     inputResultWrap.classList.add(className["input-wrap--result"]);
-
     this.inputs.forEach((_, i) => {
       const input = document.createElement("input");
-      if (i / LENGTH < 0.5) {
-        input.value = inputs[i] ?? "";
+      const value = inputs?.[i] ?? "";
+      input.dataset.index = `${i}`;
+      input.value = value;
+      input.oninput = this.handleInput.bind(this);
+
+      if (i / this.length < 0.5) {
         inputWrap.append(input);
       } else {
-        input.value = inputs[i] ?? "";
         inputResultWrap.append(input);
       }
+      this.inputs[i] = value;
+      // this.inputEls.push(input);
+      return value;
     });
     // 웹El에 어팬드
     this.wrapEl.append(inputWrap);
@@ -78,5 +79,16 @@ export class LadderDom extends LadderCanvas {
 
     this.wrapEl.append(this.startBtn);
     // this.wrapEl.append(this.endBtn);
+  }
+  handleInput(e: Event) {
+    const target = e.target;
+    if (target instanceof HTMLInputElement) {
+      const index = target.dataset.index;
+      this.inputs[Number(index)] = target.value;
+    }
+  }
+  handleStart() {
+    console.log(this.inputs);
+    this.draw();
   }
 }
