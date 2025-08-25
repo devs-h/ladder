@@ -6,6 +6,7 @@ export class LadderCanvas {
   }
 
   protected draw() {
+    console.log("왜오류?");
     // 라인을 그리는
   }
 

@@ -1,8 +1,7 @@
 import "./index.css";
-import { APITester } from "./APITester";
 import { LadderDom } from "@ladder/dom";
 import { useLayoutEffect, useRef } from "react";
-const ladderDom = new LadderDom();
+const ladderDom = new LadderDom({ inputs: ["1", "2", "3", "4", "5", "6"] });
 export function App() {
   const wrapRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
