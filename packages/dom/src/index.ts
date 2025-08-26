@@ -1,4 +1,5 @@
 import { LadderCanvas } from "@ladder/canvas";
+import type { Ladder } from "@ladder/types";
 const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
   canvas: "ladder__canvas",
@@ -7,7 +8,7 @@ const DEFAULT_CLASSNAMES = {
 
   "start-btn": "start-btn",
 };
-export class LadderDom extends LadderCanvas {
+export class LadderDom extends LadderCanvas implements Ladder {
   public wrapEl: HTMLElement;
   public inputs: string[];
   public startBtn: HTMLButtonElement;
@@ -15,11 +16,20 @@ export class LadderDom extends LadderCanvas {
 
   // private inputEls: HTMLInputElement[];
   private length: number;
+
+  public verticalLines: Ladder["verticalLines"];
+  public horizontalLines: Ladder["horizontalLines"];
+  public players: Ladder["players"];
+  public results: Ladder["results"];
   constructor(props: {
     className?: typeof DEFAULT_CLASSNAMES;
     inputs?: string[];
   }) {
     super();
+    this.verticalLines = [];
+    this.horizontalLines = [];
+    this.players = [];
+    this.results = [];
     // this.inputEls = [];
 
     // props 주입
