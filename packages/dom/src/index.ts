@@ -1,4 +1,5 @@
 import { LadderCanvas } from "@ladder/canvas";
+import { LadderCore } from "@ladder/core";
 import type { Ladder } from "@ladder/types";
 const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
@@ -8,12 +9,14 @@ const DEFAULT_CLASSNAMES = {
 
   "start-btn": "start-btn",
 };
-export class LadderDom extends LadderCanvas implements Ladder {
+export class LadderDom implements Ladder {
   public wrapEl: HTMLElement;
   public inputs: string[];
   public startBtn: HTMLButtonElement;
   public endBtn: HTMLButtonElement;
 
+  private core: LadderCore = new LadderCore();
+  private canvas: LadderCanvas = new LadderCanvas();
   // private inputEls: HTMLInputElement[];
   private length: number;
 
@@ -25,7 +28,6 @@ export class LadderDom extends LadderCanvas implements Ladder {
     className?: typeof DEFAULT_CLASSNAMES;
     inputs?: string[];
   }) {
-    super();
     this.verticalLines = [];
     this.horizontalLines = [];
     this.players = [];
@@ -52,7 +54,7 @@ export class LadderDom extends LadderCanvas implements Ladder {
 
     // 웨퍼, 캔버스 클래스
     this.wrapEl.classList.add(className.wrap);
-    this.canvasEl.classList.add(className.canvas);
+    this.canvas.canvasEl.classList.add(className.canvas);
 
     // 버튼 클래스 텍스트
     this.startBtn.innerText = "시작";
@@ -84,7 +86,7 @@ export class LadderDom extends LadderCanvas implements Ladder {
     });
     // 웹El에 어팬드
     this.wrapEl.append(inputWrap);
-    this.wrapEl.append(this.canvasEl);
+    this.wrapEl.append(this.canvas.canvasEl);
     this.wrapEl.append(inputResultWrap);
 
     this.wrapEl.append(this.startBtn);
@@ -98,7 +100,6 @@ export class LadderDom extends LadderCanvas implements Ladder {
     }
   }
   handleStart() {
-    console.log(this.inputs);
-    this.draw();
+    this.canvas.draw();
   }
 }
