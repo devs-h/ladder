@@ -1,11 +1,11 @@
 export class LadderCanvas {
-  protected canvasEl: HTMLCanvasElement;
+  public canvasEl: HTMLCanvasElement;
   constructor() {
     //값을 받아 화면을 그려야함
     this.canvasEl = document.createElement("canvas");
   }
 
-  protected draw() {
+  public draw() {
     console.log("왜오류?");
     // 라인을 그리는
   }
