@@ -24,13 +24,13 @@ export interface LadderHandle {
   /** 게임/애니메이션 시작 같은 동작 트리거 */
   start: () => void;
   /** 현재 inputs 읽기 */
-  getInputs: () => string[];
+  getInputs: () => (string | number)[];
   /** 결과/플레이어 정보 등 커스텀 노출 가능 */
 }
 /** 컴포넌트 props */
 export interface LadderReactProps extends HTMLAttributes<HTMLDivElement> {
   /** 입력값(짝수개 필수: 상단 N, 하단 N) */
-  inputs?: string[];
+  inputs?: (string | number)[];
   /** 클래스명 커스터마이징 */
   classNames?: typeof DEFAULT_CLASSNAMES;
   /** mount 이후 콜백 (내부 인스턴스 전달) */
@@ -56,7 +56,7 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
 
       // LadderDom 인스턴스 생성
       const inst = new LadderDom({
-        className: classNames,
+        classNames,
         inputs,
       });
 

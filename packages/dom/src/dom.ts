@@ -12,7 +12,7 @@ const DEFAULT_CLASSNAMES = {
 
 export class LadderDom implements ILadder {
   public wrapEl: HTMLElement;
-  public inputs: string[];
+  public inputs: (string | number)[];
   public startBtn: HTMLButtonElement;
   public endBtn: HTMLButtonElement;
 
@@ -26,8 +26,8 @@ export class LadderDom implements ILadder {
   private core: LadderCore = new LadderCore(); //파라메터로 넘기면 될거같음 poles bars players results
   private canvas: LadderCanvas = new LadderCanvas(); //파라메터로 넘기면 될거같음 poles bars players results
   constructor(props: {
-    className?: typeof DEFAULT_CLASSNAMES;
-    inputs?: string[];
+    classNames?: typeof DEFAULT_CLASSNAMES;
+    inputs?: (string | number)[];
   }) {
     this.poles = [];
     this.bars = [];
@@ -36,7 +36,7 @@ export class LadderDom implements ILadder {
     // this.inputEls = [];
 
     // props 주입
-    const className = props.className ?? DEFAULT_CLASSNAMES;
+    const classNames = props.classNames ?? DEFAULT_CLASSNAMES;
     const inputs = props.inputs;
     this.length = inputs?.length ?? 6;
 
@@ -54,24 +54,24 @@ export class LadderDom implements ILadder {
     const inputResultWrap = document.createElement("div");
 
     // 웨퍼, 캔버스 클래스
-    this.wrapEl.classList.add(className.wrap);
-    this.canvas.canvasEl.classList.add(className.canvas);
+    this.wrapEl.classList.add(classNames.wrap);
+    this.canvas.canvasEl.classList.add(classNames.canvas);
 
     // 버튼 클래스 텍스트
     this.startBtn.innerText = "시작";
     this.endBtn.innerText = "끝내기";
-    this.startBtn.classList.add(className["start-btn"]);
-    // this.endBtn.classList.add(className["end-btn"]);
+    this.startBtn.classList.add(classNames["start-btn"]);
+    // this.endBtn.classList.add(classNames["end-btn"]);
     this.startBtn.onclick = this.handleStart.bind(this);
     // this.startBtn.addEventListener("click", this.handleStart.bind(null));
     //인풋 클래스 및 어팬드
 
     this.inputs = Array(this.length).fill(null);
-    inputWrap.classList.add(className["input-wrap"]);
-    inputResultWrap.classList.add(className["input-wrap--result"]);
+    inputWrap.classList.add(classNames["input-wrap"]);
+    inputResultWrap.classList.add(classNames["input-wrap--result"]);
     this.inputs.forEach((_, i) => {
       const input = document.createElement("input");
-      const value = inputs?.[i] ?? "";
+      const value = `${inputs?.[i]}`;
       input.dataset.index = `${i}`;
       input.value = value;
       input.oninput = this.handleInput.bind(this);
@@ -90,8 +90,12 @@ export class LadderDom implements ILadder {
     this.wrapEl.append(this.canvas.canvasEl);
     this.wrapEl.append(inputResultWrap);
 
+    this.canvas.draw({ columns: this.length });
     this.wrapEl.append(this.startBtn);
     // this.wrapEl.append(this.endBtn);
+  }
+  handleInputEl(index: number) {
+    this.inputs = this.inputs.filter((_, i) => i !== index);
   }
   handleInput(e: Event) {
     const target = e.target;
@@ -101,8 +105,6 @@ export class LadderDom implements ILadder {
     }
   }
   handleStart() {
-    this.canvas.draw();
-    alert("시작");
     alert(JSON.stringify(this.inputs));
   }
 }
