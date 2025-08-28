@@ -2,22 +2,16 @@ export const mockLadder = {
   poles: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }],
   bars: [
     {
-      p1Id: 0,
-      p2Id: 1,
-      p1Y: 0.257,
-      p2Y: 0.312,
+      poleIds: [0, 1],
+      y: [0.257, 0.312],
     },
     {
-      p1Id: 1,
-      p2Id: 2,
-      p1Y: 0.259,
-      p2Y: 0.864,
+      poleIds: [1, 2],
+      y: [0.259, 0.864],
     },
     {
-      p1Id: 2,
-      p2Id: 3,
-      p1Y: 0.777,
-      p2Y: 0.351,
+      poleIds: [2, 3],
+      y: [0.777, 0.351],
     },
   ],
   players: [
