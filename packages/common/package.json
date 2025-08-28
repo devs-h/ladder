@@ -1,5 +1,5 @@
 {
-  "name": "@ladder/types",
+  "name": "@ladder/common",
   "type": "module",
   "main": "src/index.ts"
 }

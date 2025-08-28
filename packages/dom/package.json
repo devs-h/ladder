@@ -24,7 +24,7 @@
   "devDependencies": {
     "@ladder/core": "workspace:*",
     "@ladder/canvas": "workspace:*",
-    "@ladder/types": "workspace:*",
+    "@ladder/common": "workspace:*",
     "@types/bun": "latest"
   },
   "peerDependencies": {
