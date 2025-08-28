@@ -1,6 +1,6 @@
 import { LadderCanvas } from "@ladder/canvas";
 import { LadderCore } from "@ladder/core";
-import type { Ladder } from "@ladder/types";
+import type { Ladder } from "@ladder/common";
 const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
   canvas: "ladder__canvas",
@@ -19,18 +19,18 @@ export class LadderDom implements Ladder {
   // private inputEls: HTMLInputElement[];
   private length: number;
 
-  public verticalLines: Ladder["verticalLines"];
-  public horizontalLines: Ladder["horizontalLines"];
+  public poles: Ladder["poles"];
+  public bars: Ladder["bars"];
   public players: Ladder["players"];
   public results: Ladder["results"];
-  private core: LadderCore = new LadderCore(); //파라메터로 넘기면 될거같음 verticalLines horizontalLines players results
-  private canvas: LadderCanvas = new LadderCanvas(); //파라메터로 넘기면 될거같음 verticalLines horizontalLines players results
+  private core: LadderCore = new LadderCore(); //파라메터로 넘기면 될거같음 poles bars players results
+  private canvas: LadderCanvas = new LadderCanvas(); //파라메터로 넘기면 될거같음 poles bars players results
   constructor(props: {
     className?: typeof DEFAULT_CLASSNAMES;
     inputs?: string[];
   }) {
-    this.verticalLines = [];
-    this.horizontalLines = [];
+    this.poles = [];
+    this.bars = [];
     this.players = [];
     this.results = [];
     // this.inputEls = [];

@@ -1,6 +1,6 @@
 export const mockLadder = {
-  verticalLines: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }],
-  horizontalLines: [
+  poles: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }],
+  bars: [
     {
       p1Id: 0,
       p2Id: 1,
