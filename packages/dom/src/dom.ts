@@ -1,6 +1,6 @@
 import { LadderCanvas } from "@ladder/canvas";
 import { LadderCore } from "@ladder/core";
-import type { Ladder } from "@ladder/common";
+import type { ILadder, IPole, IBar, IPlayer, IResult } from "@ladder/common";
 const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
   canvas: "ladder__canvas",
@@ -10,7 +10,7 @@ const DEFAULT_CLASSNAMES = {
   "start-btn": "start-btn",
 };
 
-export class LadderDom implements Ladder {
+export class LadderDom implements ILadder {
   public wrapEl: HTMLElement;
   public inputs: string[];
   public startBtn: HTMLButtonElement;
@@ -19,10 +19,10 @@ export class LadderDom implements Ladder {
   // private inputEls: HTMLInputElement[];
   private length: number;
 
-  public poles: Ladder["poles"];
-  public bars: Ladder["bars"];
-  public players: Ladder["players"];
-  public results: Ladder["results"];
+  public poles: IPole[];
+  public bars: IBar[];
+  public players: IPlayer[];
+  public results: IResult[];
   private core: LadderCore = new LadderCore(); //파라메터로 넘기면 될거같음 poles bars players results
   private canvas: LadderCanvas = new LadderCanvas(); //파라메터로 넘기면 될거같음 poles bars players results
   constructor(props: {
