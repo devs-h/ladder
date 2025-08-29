@@ -11,6 +11,7 @@ export function App() {
     <div className="app">
       <div className="logo-container"></div>
       <div ref={wrapRef}></div>
+      <audio src="/bgm.m4a" autoPlay />
     </div>
   );
 }
