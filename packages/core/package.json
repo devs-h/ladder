@@ -22,7 +22,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@ladder/types": "workspace:*",
+    "@ladder/common": "workspace:*",
     "@types/bun": "latest"
   },
   "peerDependencies": {

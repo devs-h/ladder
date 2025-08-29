@@ -8,7 +8,7 @@
     "demo"
   ],
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.2.1"
   },
   "scripts": {
     "dev:demo": "bun --hot demo/src/index.tsx",
@@ -22,6 +22,6 @@
     "ladder:build:strict": "concurrently --kill-others-on-fail -n core,canvas,dom -c auto \"bun run -F @ladder/core build\" \"bun run -F @ladder/canvas build\" \"bun run -F @ladder/dom build\""
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.2"
   }
 }
