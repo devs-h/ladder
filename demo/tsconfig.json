@@ -30,8 +30,12 @@
       "@/*": ["./src/*"],
       "@ladder/dom": ["../packages/dom/src/index.ts"],
       "@ladder/core": ["../packages/core/src/index.ts"],
+      "@ladder/kit": ["../packages/kit/src/index.ts"],
       "@ladder/canvas": ["../packages/canvas/src/index.ts"],
-      "@ladder/common": ["../packages/common/src/types/index.ts", "../packages/common/src/utils/index.ts"]
+      "@ladder/common": [
+        "../packages/common/src/types/index.ts",
+        "../packages/common/src/utils/index.ts"
+      ]
     }
   }
 }
