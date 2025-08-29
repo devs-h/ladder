@@ -16,7 +16,8 @@
     "@ladder/dom": "workspace:*",
     "@ladder/core": "workspace:*",
     "@ladder/canvas": "workspace:*",
-    "@ladder/common": "workspace:*"
+    "@ladder/common": "workspace:*",
+    "@ladder/kit": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19",
