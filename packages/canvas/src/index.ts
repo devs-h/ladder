@@ -49,6 +49,7 @@ export class LadderCanvas {
     const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
     this.canvasEl.style.width = `${width}px`;
     this.canvasEl.style.height = `${height}px`;
+    this.canvasEl.style.margin = "auto";
     this.canvasEl.width = width * dpr;
     this.canvasEl.height = height * dpr;
 

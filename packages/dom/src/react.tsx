@@ -1,6 +1,7 @@
 import type { ILadder } from "@ladder/common";
 import {
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useRef,
   type MouseEvent,
@@ -17,8 +18,8 @@ export interface LadderReactProps extends Partial<ILadder> {
   children?: React.ReactNode;
   /** 클래스명 커스터마이징 */
   className?: string;
-  onStart?: MouseEventHandler;
-  onPause?: MouseEventHandler;
+  onStart?: () => void;
+  onPause?: () => void;
 }
 
 export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
@@ -26,14 +27,10 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
     { children, players, results, className, onStart, onPause },
     ref
   ) {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    const handleStart = (e: MouseEvent) => {
-      onStart?.(e);
-      audioRef.current?.play();
-    };
-    const handleStop = (e: MouseEvent) => {
-      onPause?.(e);
-      audioRef.current?.pause();
+    const handleStart = () => {};
+    const handleStop = () => {
+      onPause?.();
+      // audioRef.current?.pause();
     };
     // ✅ 외부로 노출할 메서드만 제공 (DOM 상속 X)
     useImperativeHandle(
@@ -44,12 +41,15 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
       }),
       [players, results]
     );
-
+    useEffect(() => {
+      onStart?.();
+    }, []);
     return (
       <div className={className}>
         <div className="flex">
           {players?.map((player, index) => (
             <input
+              className="border"
               type="text"
               key={`player-${index}-${player.poleId}`}
               defaultValue={player.value}
@@ -61,6 +61,7 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
         <div>
           {results?.map((result, index) => (
             <input
+              className="border"
               type="text"
               key={`result-${index}-${result.poleId}`}
               defaultValue={result.value}

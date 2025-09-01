@@ -16,7 +16,7 @@ export function LadderKit() {
       results={Array(6)
         .fill("")
         .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
-      onStart={() => canvas.draw()}
+      onStart={() => canvas.draw({ width: 1000, height: 500, columns: 6 })}
     >
       <div ref={canvasRef} />
     </LadderReact>
