@@ -30,7 +30,6 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
     const handleStart = (e: MouseEvent) => {
       onStart?.(e);
       audioRef.current?.play();
-      console.log(players, results);
     };
     const handleStop = (e: MouseEvent) => {
       onPause?.(e);
