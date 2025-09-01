@@ -6,8 +6,7 @@ import {
   type MouseEvent,
   type MouseEventHandler,
 } from "react";
-import bgm from "./assets/bgm.m4a";
-
+import "./output.css";
 /** 외부로 내보낼 ref 메서드 타입 */
 export interface LadderHandle {
   getPlayers: () => ILadder["players"] | undefined;
@@ -49,7 +48,7 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
 
     return (
       <div className={className}>
-        <div>
+        <div className="flex">
           {players?.map((player, index) => (
             <input
               type="text"
@@ -71,7 +70,6 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
           ))}
         </div>
         <button onClick={handleStart}>시작</button>
-        <audio ref={audioRef} src={bgm} />
       </div>
     );
   }

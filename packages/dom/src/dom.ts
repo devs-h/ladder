@@ -1,5 +1,4 @@
 import type { ILadder, IPole, IBar, IPlayer, IResult } from "@ladder/common";
-import bgm from "./assets/bgm.m4a";
 const DEFAULT_CLASSNAMES = {
   wrap: "ladder",
   canvas: "ladder__canvas",
@@ -13,7 +12,6 @@ export class LadderDom implements ILadder {
   public wrapEl: HTMLElement;
   public startBtn: HTMLButtonElement;
   public endBtn: HTMLButtonElement;
-  public audioEl: HTMLAudioElement = new Audio(bgm);
   public inputs: (string | number)[] = [];
   // private inputEls: HTMLInputElement[];
   public poles: IPole[];
@@ -80,7 +78,6 @@ export class LadderDom implements ILadder {
     this.wrapEl.append(inputResultWrap);
 
     this.wrapEl.append(this.startBtn);
-    this.wrapEl.append(this.audioEl);
     // this.wrapEl.append(this.endBtn);
   }
 
@@ -98,7 +95,6 @@ export class LadderDom implements ILadder {
     }
   }
   handleStart() {
-    this.audioEl.play();
     alert(JSON.stringify({ players: this.players, results: this.results }));
   }
 }
