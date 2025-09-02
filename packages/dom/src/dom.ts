@@ -12,7 +12,7 @@ export class LadderDom implements ILadder {
   public wrapEl: HTMLElement;
   public startBtn: HTMLButtonElement;
   public endBtn: HTMLButtonElement;
-
+  public inputs: (string | number)[] = [];
   // private inputEls: HTMLInputElement[];
   public poles: IPole[];
   public bars: IBar[];

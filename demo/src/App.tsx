@@ -1,16 +1,9 @@
 import "./index.css";
 import { LadderKit } from "@ladder/kit";
-import { useLayoutEffect, useRef } from "react";
-const ladderKit = new LadderKit();
 export function App() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    wrapRef.current?.append(ladderKit.dom.wrapEl);
-  }, []);
   return (
     <div className="app">
-      <div className="logo-container"></div>
-      <div ref={wrapRef}></div>
+      <LadderKit />
     </div>
   );
 }

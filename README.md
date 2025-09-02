@@ -17,3 +17,14 @@
 
 1. 공통 패키지.
    1. 타입스
+
+"dev": "node scripts/dev.cjs", // demo + 원하는 패키지 실행 bun dev kit or dom
+"dev:demo": "bun --hot demo/src/index.tsx", // 데모만 실행
+"dev:core": "bun run -F @ladder/core dev", // 코어만 실행
+"dev:canvas": "bun run -F @ladder/canvas dev", //
+"dev:dom": "bun run -F @ladder/dom dev",
+"dev:kit": "bun run -F @ladder/kit dev",
+"build:core": "bun run -F @ladder/core build", //코어만 빌드
+"build:canvas": "bun run -F @ladder/canvas build",
+"build:dom": "bun run -F @ladder/dom build",
+"build:kit": "bun run -F @ladder/kit build",
