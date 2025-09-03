@@ -1,4 +1,4 @@
-import type { ILadder } from "@ladder/common";
+import type { IBar, ILadder } from "@ladder/common";
 
 /**
  * @param ladderData: ILadder
@@ -22,22 +22,36 @@ export const getNextStep = (
   const { bars } = ladderData;
   if (bars.length === 0 || !bars) return null;
 
-  const sortedBars = bars.sort((a, b) => {
-    const aY = a.y[0];
-    const bY = b.y[0];
-    if (aY === undefined || bY === undefined) return 0;
-    return aY - bY;
-  });
-
-  const targetBars = sortedBars.filter(
-    (bar) => bar.poleIds[0] === curPole && curY < bar.y[0]!,
+  const targetBars = bars.filter(
+    (bar) => bar.poleIds.includes(curPole) && bar.y.some((y) => y > curY),
   );
 
-  const nextStep = targetBars.find((bar) => bar.y[0]! > curY);
+  const barsGoingRight = targetBars
+    .filter((bar) => bar.poleIds[0] === curPole && bar.y[0]! > curY)
+    .sort((a, b) => a.y[0]! - b.y[0]!);
 
-  if (!nextStep) return { nextPole: curPole, nextY: 1 }; // If there is no next step assume that this is final
+  const barsGoingLeft = targetBars
+    .filter((bar) => bar.poleIds[1] === curPole && bar.y[1]! > curY)
+    .sort((a, b) => a.y[1]! - b.y[1]!);
 
-  return { nextPole: nextStep.poleIds[1], nextY: nextStep.y[1] };
+  const minGoingLeft = barsGoingLeft.length > 0 ? barsGoingLeft[0]?.y[1] : 1;
+  const minGoingRight = barsGoingRight.length > 0 ? barsGoingRight[0]?.y[0] : 1;
+
+  const nextStep =
+    minGoingLeft! < minGoingRight!
+      ? {
+          nextPole: barsGoingLeft[0]?.poleIds[0]!,
+          nextY: barsGoingLeft[0]?.y[0],
+        }
+      : {
+          nextPole: barsGoingRight[0]?.poleIds[1]!,
+          nextY: barsGoingRight[0]?.y[1],
+        };
+
+  if (!nextStep.nextPole || !nextStep.nextY)
+    return { nextPole: curPole, nextY: 1 }; // If there is no next step assume that this is final
+
+  return nextStep;
 };
 
 /**
