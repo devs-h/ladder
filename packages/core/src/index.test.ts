@@ -62,5 +62,5 @@ test("getNextStep test ", () => {
 
 test("getFinalDestination test ", () => {
   expect(getFinalDestination(mockLadder, "0")).toStrictEqual("1");
-  expect(getFinalDestination(mockLadder, "1")).toStrictEqual("3");
+  expect(getFinalDestination(mockLadder, "1")).toStrictEqual("3"); // ["1" => "2" => "3"] [0 => 0.259 => 0.864(2) => 0.888(2) => 0.911(3) => 1]
 });
