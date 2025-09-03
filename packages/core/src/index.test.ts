@@ -23,6 +23,10 @@ const mockLadder = {
       poleIds: ["1", "2"],
       y: [0.264, 0.871],
     },
+    {
+      poleIds: ["2", "3"],
+      y: [0.901, 0.912],
+    },
 
     {
       poleIds: ["2", "3"],
@@ -55,12 +59,22 @@ test("getNextStep test ", () => {
 
   expect(getNextStep(mockLadder, "1", 0.271)).toStrictEqual({
     //bigger than 0.271 does not exist so it will return 1
-    nextPole: "1",
+    nextPole: "0",
+    nextY: 0.257,
+  });
+
+  expect(getNextStep(mockLadder, "3", 0.951)).toStrictEqual({
+    //bigger than 0.271 does not exist so it will return 1
+    nextPole: "3",
     nextY: 1,
   });
 });
 
 test("getFinalDestination test ", () => {
   expect(getFinalDestination(mockLadder, "0")).toStrictEqual("1");
-  expect(getFinalDestination(mockLadder, "1")).toStrictEqual("3"); // ["1" => "2" => "3"] [0 => 0.259 => 0.864(2) => 0.888(2) => 0.911(3) => 1]
+  expect(getFinalDestination(mockLadder, "1")).toStrictEqual("2");
+  // ["1" => "2(0.864)" => "1(0.264)" => "2(0.881)" => "3(0.911)"=> "2(0.901)" => "2"]
+  expect(getFinalDestination(mockLadder, "3")).toStrictEqual("0");
+
+  expect(getFinalDestination(mockLadder, "2")).toStrictEqual("3");
 });
