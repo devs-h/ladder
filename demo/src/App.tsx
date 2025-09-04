@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./index.css";
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import FloatingMenu from './components/FloatingMenu';
 import ContentSections from './components/ContentSections';
 
@@ -8,10 +9,16 @@ export function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [activeSection, setActiveSection] = useState('hero');
 
-  // 스크롤 위치에 따른 섹션 감지
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'features', 'gallery', 'testimonials', 'pricing', 'faq'];
+      let sections: string[] = [];
+      
+      if (activeTab === 'home') {
+        sections = ['hero', 'features', 'gallery', 'testimonials', 'faq'];
+      } else if (activeTab === 'about') {
+        sections = ['npm-install', 'react-usage', 'yarn-install', 'bun-install', 'cdn-usage', 'typescript', 'configuration', 'resources'];
+      }
+      
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -28,9 +35,19 @@ export function App() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeTab]);
 
-  // 섹션으로 스크롤 이동
+  // 탭이 변경될 때 activeSection 초기화
+  useEffect(() => {
+    if (activeTab === 'home') {
+      setActiveSection('hero');
+    } else if (activeTab === 'about') {
+      setActiveSection('npm-install');
+    } else {
+      setActiveSection('');
+    }
+  }, [activeTab]);
+
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -45,7 +62,12 @@ export function App() {
 
   return (
     <div className="app">
-      <Header activeTab={activeTab} onTabChange={setActiveTab} />
+      <Sidebar 
+        activeTab={activeTab} 
+        onTabChange={setActiveTab}
+        onSectionClick={handleSectionClick}
+        activeSection={activeSection}
+      />
       <FloatingMenu 
         onSectionClick={handleSectionClick} 
         activeSection={activeSection}

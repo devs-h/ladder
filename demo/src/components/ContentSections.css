@@ -1,5 +1,5 @@
 .main-content {
-  margin-top: 80px;
+  /* margin-top: 80px; */
   padding: 2rem;
   max-width: 1280px;
   margin-left: auto;
@@ -182,97 +182,6 @@
 
 .testimonial-author span {
   color: rgba(255, 255, 255, 0.6);
-}
-
-/* Pricing Section */
-.pricing-section {
-  margin-bottom: 4rem;
-}
-
-.pricing-section h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #fbf0df;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.pricing-card {
-  background: rgba(36, 36, 36, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.pricing-card.featured {
-  border-color: #fbf0df;
-  transform: scale(1.05);
-}
-
-.pricing-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.pricing-card.featured:hover {
-  transform: scale(1.05) translateY(-5px);
-}
-
-.pricing-card h3 {
-  color: #fbf0df;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.price {
-  color: #fbf0df;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-}
-
-.price span {
-  font-size: 1rem;
-  opacity: 0.7;
-}
-
-.pricing-card ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
-}
-
-.pricing-card li {
-  color: rgba(255, 255, 255, 0.8);
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pricing-button {
-  background: #fbf0df;
-  color: #1a1a1a;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.pricing-button:hover {
-  background: #f3d5a3;
-  transform: translateY(-2px);
 }
 
 /* FAQ Section */
@@ -561,7 +470,6 @@
   .features-section h2,
   .gallery-section h2,
   .testimonials-section h2,
-  .pricing-section h2,
   .faq-section h2 {
     font-size: 2rem;
   }
@@ -569,7 +477,6 @@
   .features-grid,
   .gallery-grid,
   .testimonials-grid,
-  .pricing-grid,
   .services-grid,
   .portfolio-grid {
     grid-template-columns: 1fr;
@@ -582,14 +489,6 @@
   
   .about-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .pricing-card.featured {
-    transform: none;
-  }
-  
-  .pricing-card.featured:hover {
-    transform: translateY(-5px);
   }
 }
 
@@ -608,12 +507,126 @@
   
   .feature-card,
   .testimonial-card,
-  .pricing-card,
   .faq-item,
   .about-card,
   .service-card,
   .contact-info,
   .contact-form {
     padding: 1.5rem;
+  }
+}
+
+/* Swiper 가이드 섹션 스타일 */
+.swiper-guide-section {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.swiper-guide-section h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.guide-section {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.guide-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.guide-section p {
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.code-block {
+  background: #2d3748;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.code-block pre {
+  margin: 0;
+  color: #e2e8f0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.code-block code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.resource-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.resource-list li::before {
+  content: "🔗";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.resource-list a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.resource-list a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .swiper-guide-section {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+  
+  .swiper-guide-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .guide-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .code-block {
+    padding: 0.75rem;
+    font-size: 0.8rem;
   }
 }

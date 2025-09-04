@@ -14,7 +14,6 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSecti
     { id: 'features', label: '기능', icon: '⚡' },
     { id: 'gallery', label: '갤러리', icon: '🖼️' },
     { id: 'testimonials', label: '후기', icon: '💬' },
-    { id: 'pricing', label: '가격', icon: '💰' },
     { id: 'faq', label: 'FAQ', icon: '❓' }
   ];
 
@@ -25,7 +24,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSecti
 
   return (
     <div className={`floating-menu ${isOpen ? 'open' : ''}`}>
-      <button 
+      {/* <button 
         className="menu-toggle"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="메뉴 토글"
@@ -35,7 +34,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSecti
           <span></span>
           <span></span>
         </span>
-      </button>
+      </button> */}
       
       <div className="menu-items">
         {sections.map(section => (

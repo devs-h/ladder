@@ -1,4 +1,5 @@
 import React from 'react';
+import { LadderReact } from "@ladder/dom";
 import './ContentSections.css';
 
 interface ContentSectionsProps {
@@ -70,42 +71,6 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab }) => {
         </div>
       </section>
 
-      <section id="pricing" className="pricing-section">
-        <h2>가격 정보</h2>
-        <div className="pricing-grid">
-          <div className="pricing-card">
-            <h3>기본</h3>
-            <div className="price">₩29,000<span>/월</span></div>
-            <ul>
-              <li>기본 기능</li>
-              <li>이메일 지원</li>
-              <li>5GB 저장공간</li>
-            </ul>
-            <button className="pricing-button">선택하기</button>
-          </div>
-          <div className="pricing-card featured">
-            <h3>프로</h3>
-            <div className="price">₩59,000<span>/월</span></div>
-            <ul>
-              <li>모든 기능</li>
-              <li>우선 지원</li>
-              <li>50GB 저장공간</li>
-            </ul>
-            <button className="pricing-button">선택하기</button>
-          </div>
-          <div className="pricing-card">
-            <h3>엔터프라이즈</h3>
-            <div className="price">₩99,000<span>/월</span></div>
-            <ul>
-              <li>무제한 기능</li>
-              <li>전담 지원</li>
-              <li>무제한 저장공간</li>
-            </ul>
-            <button className="pricing-button">선택하기</button>
-          </div>
-        </div>
-      </section>
-
       <section id="faq" className="faq-section">
         <h2>자주 묻는 질문</h2>
         <div className="faq-list">
@@ -129,17 +94,133 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab }) => {
   const renderAboutContent = () => (
     <div className="content-section">
       <section className="about-section">
-        <h1>회사 소개</h1>
-        <p>Ladder는 혁신적인 기술 솔루션을 제공하는 회사입니다.</p>
-        <div className="about-grid">
-          <div className="about-card">
-            <h3>미션</h3>
-            <p>고객의 성공을 위한 최고의 기술 솔루션을 제공합니다.</p>
+        <h1>Getting started</h1>
+        {/* <p>Ladder는 혁신적인 기술 솔루션을 제공하는 회사입니다.</p> */}
+      </section>
+      
+        <section className="swiper-guide-section">
+          <h2>Installation</h2>
+          <div id="npm-install" className="guide-section">
+            <h3>📦 NPM 설치 방법</h3>
+            <div className="code-block">
+              <pre><code>npm install @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
+            </div>
+            <p>React 프로젝트에서 Ladder 라이브러리를 설치합니다:</p>
+            <div className="code-block">
+              <pre><code>{`// React 컴포넌트에서 import
+import { LadderReact } from '@ladder/dom';
+import { LadderCore } from '@ladder/core';
+import { LadderCanvas } from '@ladder/canvas';`}</code></pre>
+            </div>
           </div>
-          <div className="about-card">
-            <h3>비전</h3>
-            <p>기술 혁신을 통해 더 나은 미래를 만들어갑니다.</p>
+
+          <div id="react-usage" className="guide-section">
+            <h3>🔧 React에서 사용하기</h3>
+            <p>React 컴포넌트에서 Ladder를 사용하는 방법:</p>
+            <div className="code-block">
+              <pre><code>{`import React from 'react';
+import { LadderReact } from '@ladder/dom';
+
+function MyComponent() {
+  return (
+    <div>
+      <h1>My Ladder App</h1>
+      <LadderReact />
+    </div>
+  );
+}
+
+export default MyComponent;`}</code></pre>
+            </div>
           </div>
+
+          <div id="yarn-install" className="guide-section">
+            <h3>📦 Yarn 설치 방법</h3>
+            <p>Yarn을 사용하는 경우:</p>
+            <div className="code-block">
+              <pre><code>yarn add @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
+            </div>
+          </div>
+
+          <div id="bun-install" className="guide-section">
+            <h3>📦 Bun 설치 방법</h3>
+            <p>Bun을 사용하는 경우:</p>
+            <div className="code-block">
+              <pre><code>bun add @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
+            </div>
+          </div>
+
+          <div id="cdn-usage" className="guide-section">
+            <h3>🌐 CDN 사용 방법</h3>
+            <p>CDN을 통해 직접 사용하려면:</p>
+            <div className="code-block">
+              <pre><code>{`<!-- HTML에서 직접 사용 -->
+<script src="https://unpkg.com/@ladder/dom/dist/index.js"></script>
+<script src="https://unpkg.com/@ladder/core/dist/index.js"></script>`}</code></pre>
+            </div>
+            <p>ES 모듈을 사용하는 경우:</p>
+            <div className="code-block">
+              <pre><code>{`<script type="module">
+  import { LadderReact } from 'https://unpkg.com/@ladder/dom/dist/index.mjs';
+  
+  // Ladder 사용
+</script>`}</code></pre>
+            </div>
+          </div>
+
+          <div id="typescript" className="guide-section">
+            <h3>🏗️ TypeScript 사용</h3>
+            <p>TypeScript 프로젝트에서 타입 정의 사용:</p>
+            <div className="code-block">
+              <pre><code>{`import { LadderReact } from '@ladder/dom';
+import type { LadderConfig, LadderOptions } from '@ladder/types';
+
+const config: LadderConfig = {
+  // 설정 옵션
+};
+
+function MyComponent() {
+  return <LadderReact config={config} />;
+}`}</code></pre>
+            </div>
+          </div>
+
+
+          <div id="configuration" className="guide-section">
+            <h3>⚙️ 설정 및 초기화</h3>
+            <div className="code-block">
+              <pre><code>{`import { LadderReact } from '@ladder/dom';
+
+const ladderConfig = {
+  // 기본 설정
+  theme: 'light',
+  animation: true,
+  responsive: true,
+  
+  // 커스텀 옵션
+  customOptions: {
+    // 추가 설정
+  }
+};
+
+function App() {
+  return (
+    <div className="app">
+      <LadderReact config={ladderConfig} />
+    </div>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div id="resources" className="guide-section">
+            <h3>📚 추가 리소스</h3>
+            <ul className="resource-list">
+              <li><a href="https://github.com/ladder-org/ladder" target="_blank" rel="noopener noreferrer">GitHub 저장소</a></li>
+              <li><a href="https://ladder.dev/docs" target="_blank" rel="noopener noreferrer">공식 문서</a></li>
+              <li><a href="https://ladder.dev/examples" target="_blank" rel="noopener noreferrer">예제 모음</a></li>
+              <li><a href="https://ladder.dev/api" target="_blank" rel="noopener noreferrer">API 레퍼런스</a></li>
+            </ul>
         </div>
       </section>
     </div>
@@ -148,66 +229,53 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab }) => {
   const renderServicesContent = () => (
     <div className="content-section">
       <section className="services-section">
-        <h1>서비스</h1>
-        <div className="services-grid">
-          <div className="service-card">
-            <h3>웹 개발</h3>
-            <p>현대적이고 반응형 웹사이트를 개발합니다.</p>
-          </div>
-          <div className="service-card">
-            <h3>모바일 앱</h3>
-            <p>iOS와 Android 앱을 개발합니다.</p>
-          </div>
-          <div className="service-card">
-            <h3>클라우드 솔루션</h3>
-            <p>확장 가능한 클라우드 인프라를 구축합니다.</p>
-          </div>
-        </div>
+        <h1>데모</h1>
+        <LadderReact />
       </section>
     </div>
   );
 
-  const renderPortfolioContent = () => (
-    <div className="content-section">
-      <section className="portfolio-section">
-        <h1>포트폴리오</h1>
-        <div className="portfolio-grid">
-          {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="portfolio-item">
-              <div className="portfolio-placeholder">
-                <span>프로젝트 {i}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
+  // const renderPortfolioContent = () => (
+  //   <div className="content-section">
+  //     <section className="portfolio-section">
+  //       <h1>포트폴리오</h1>
+  //       <div className="portfolio-grid">
+  //         {[1, 2, 3, 4, 5, 6].map(i => (
+  //           <div key={i} className="portfolio-item">
+  //             <div className="portfolio-placeholder">
+  //               <span>프로젝트 {i}</span>
+  //             </div>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     </section>
+  //   </div>
+  // );
 
-  const renderContactContent = () => (
-    <div className="content-section">
-      <section className="contact-section">
-        <h1>연락처</h1>
-        <div className="contact-grid">
-          <div className="contact-info">
-            <h3>연락처 정보</h3>
-            <p>📧 contact@ladder.com</p>
-            <p>📞 02-1234-5678</p>
-            <p>📍 서울시 강남구 테헤란로 123</p>
-          </div>
-          <div className="contact-form">
-            <h3>문의하기</h3>
-            <form>
-              <input type="text" placeholder="이름" />
-              <input type="email" placeholder="이메일" />
-              <textarea placeholder="메시지"></textarea>
-              <button type="submit">전송</button>
-            </form>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+  // const renderContactContent = () => (
+  //   <div className="content-section">
+  //     <section className="contact-section">
+  //       <h1>연락처</h1>
+  //       <div className="contact-grid">
+  //         <div className="contact-info">
+  //           <h3>연락처 정보</h3>
+  //           <p>📧 contact@ladder.com</p>
+  //           <p>📞 02-1234-5678</p>
+  //           <p>📍 서울시 강남구 테헤란로 123</p>
+  //         </div>
+  //         <div className="contact-form">
+  //           <h3>문의하기</h3>
+  //           <form>
+  //             <input type="text" placeholder="이름" />
+  //             <input type="email" placeholder="이메일" />
+  //             <textarea placeholder="메시지"></textarea>
+  //             <button type="submit">전송</button>
+  //           </form>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   </div>
+  // );
 
   const renderContent = () => {
     switch (activeTab) {
@@ -217,10 +285,10 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab }) => {
         return renderAboutContent();
       case 'services':
         return renderServicesContent();
-      case 'portfolio':
-        return renderPortfolioContent();
-      case 'contact':
-        return renderContactContent();
+      // case 'portfolio':
+      //   return renderPortfolioContent();
+      // case 'contact':
+      //   return renderContactContent();
       default:
         return renderHomeContent();
     }

@@ -10,9 +10,9 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   const tabs = [
     { id: 'home', label: '홈' },
     { id: 'about', label: '소개' },
-    { id: 'services', label: '서비스' },
-    { id: 'portfolio', label: '포트폴리오' },
-    { id: 'contact', label: '연락처' }
+    { id: 'services', label: '데모' },
+    // { id: 'portfolio', label: '포트폴리오' },
+    // { id: 'contact', label: '연락처' }
   ];
 
   return (
