@@ -15,13 +15,11 @@
     "dev:demo": "bun --hot demo/src/index.tsx",
     "dev:core": "bun run -F @ladder/core dev",
     "dev:canvas": "bun run -F @ladder/canvas dev",
-    "dev:dom": "bun run -F @ladder/dom dev",
     "dev:kit": "bun run -F @ladder/kit dev",
     "build:core": "bun run -F @ladder/core build",
     "build:canvas": "bun run -F @ladder/canvas build",
-    "build:dom": "bun run -F @ladder/dom build",
     "build:kit": "bun run -F @ladder/kit build",
-    "build": "concurrently -n core,canvas,dom,kit -c auto \"bun run -F @ladder/core build\" \"bun run -F @ladder/canvas build\" \"bun run -F @ladder/dom build\" \"bun run -F @ladder/kit build\""
+    "build": "concurrently -n core,canvas,kit -c auto \"bun run -F @ladder/core build\" \"bun run -F @ladder/canvas build\" \"bun run -F @ladder/kit build\""
   },
   "peerDependencies": {
     "typescript": "^5.9.2"
