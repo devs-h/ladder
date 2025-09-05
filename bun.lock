@@ -21,7 +21,6 @@
         "@ladder/canvas": "workspace:*",
         "@ladder/common": "workspace:*",
         "@ladder/core": "workspace:*",
-        "@ladder/dom": "workspace:*",
         "@ladder/kit": "workspace:*",
         "react": "^19",
         "react-dom": "^19",
@@ -55,21 +54,6 @@
       },
       "devDependencies": {
         "@ladder/common": "workspace:*",
-        "@types/bun": "latest",
-      },
-      "peerDependencies": {
-        "typescript": "^5",
-      },
-    },
-    "packages/dom": {
-      "name": "@ladder/dom",
-      "dependencies": {
-        "tsup": "^8.5.0",
-      },
-      "devDependencies": {
-        "@ladder/canvas": "workspace:*",
-        "@ladder/common": "workspace:*",
-        "@ladder/core": "workspace:*",
         "@types/bun": "latest",
       },
       "peerDependencies": {
@@ -164,8 +148,6 @@
     "@ladder/common": ["@ladder/common@workspace:packages/common"],
 
     "@ladder/core": ["@ladder/core@workspace:packages/core"],
-
-    "@ladder/dom": ["@ladder/dom@workspace:packages/dom"],
 
     "@ladder/kit": ["@ladder/kit@workspace:packages/kit"],
 
