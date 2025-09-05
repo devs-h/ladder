@@ -8,16 +8,22 @@ const mockLadder = {
   ],
   bars: [
     {
-      poleIds: [0, 1],
-      y: [0.257, 0.312],
+      pole1Id: 0,
+      pole2Id: 1,
+      pole1Y: 0.257,
+      pole2Y: 0.312,
     },
     {
-      poleIds: [1, 2],
-      y: [0.259, 0.864],
+      pole1Id: 1,
+      pole2Id: 2,
+      pole1Y: 0.259,
+      pole2Y: 0.864,
     },
     {
-      poleIds: [2, 3],
-      y: [0.777, 0.351],
+      pole1Id: 2,
+      pole2Id: 3,
+      pole1Y: 0.777,
+      pole2Y: 0.351,
     },
   ],
   players: [
@@ -40,8 +46,10 @@ export interface IPole {
 }
 
 export interface IBar {
-  poleIds: string[];
-  y: number[];
+  pole1Id: string;
+  pole2Id: string;
+  pole1Y: number;
+  pole2Y: number;
 }
 
 export interface IPlayer {
