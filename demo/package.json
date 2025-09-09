@@ -17,6 +17,7 @@
     "@ladder/core": "workspace:*",
     "@ladder/canvas": "workspace:*",
     "@ladder/common": "workspace:*",
+    "@ladder/utils": "workspace:*",
     "@ladder/kit": "workspace:*"
   },
   "devDependencies": {
