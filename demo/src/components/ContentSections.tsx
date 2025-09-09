@@ -1,6 +1,6 @@
 import React from 'react';
 import { LadderReact } from "@ladder/dom";
-import './ContentSections.css';
+import '../styles/ContentSections.css';
 
 interface ContentSectionsProps {
   activeTab: string;
@@ -103,14 +103,13 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab }) => {
           <div id="npm-install" className="guide-section">
             <h3>📦 NPM 설치 방법</h3>
             <div className="code-block">
-              <pre><code>npm install @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
+              <pre><code>npm install ladder-play</code></pre>
             </div>
             <p>React 프로젝트에서 Ladder 라이브러리를 설치합니다:</p>
             <div className="code-block">
-              <pre><code>{`// React 컴포넌트에서 import
-import { LadderReact } from '@ladder/dom';
-import { LadderCore } from '@ladder/core';
-import { LadderCanvas } from '@ladder/canvas';`}</code></pre>
+              <pre><code>{`import { LadderCore } from '@ladder-play/core';
+import { LadderReact } from '@ladder-play/react';
+import { LadderVue } from '@ladder-play/vue';`}</code></pre>
             </div>
           </div>
 
@@ -118,10 +117,10 @@ import { LadderCanvas } from '@ladder/canvas';`}</code></pre>
             <h3>🔧 React에서 사용하기</h3>
             <p>React 컴포넌트에서 Ladder를 사용하는 방법:</p>
             <div className="code-block">
-              <pre><code>{`import React from 'react';
-import { LadderReact } from '@ladder/dom';
-
-function MyComponent() {
+              <pre><code>{`import { LadderReact } from '@ladder-play/react;`}</code></pre>
+            </div>
+            <div className="code-block">
+              <pre><code>{`function MyComponent() {
   return (
     <div>
       <h1>My Ladder App</h1>
@@ -139,14 +138,6 @@ export default MyComponent;`}</code></pre>
             <p>Yarn을 사용하는 경우:</p>
             <div className="code-block">
               <pre><code>yarn add @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
-            </div>
-          </div>
-
-          <div id="bun-install" className="guide-section">
-            <h3>📦 Bun 설치 방법</h3>
-            <p>Bun을 사용하는 경우:</p>
-            <div className="code-block">
-              <pre><code>bun add @ladder/dom @ladder/core @ladder/canvas @ladder/types</code></pre>
             </div>
           </div>
 
@@ -193,9 +184,37 @@ function MyComponent() {
 
 const ladderConfig = {
   // 기본 설정
-  theme: 'light',
-  animation: true,
-  responsive: true,
+  theme: 'light | dark', // 테마 색상  
+  maxPlayers: 10, // 최대 플레이어 갯수
+  draggable: true, // 드래그 가능 유무
+  
+
+  blindPlayers: true | false, // 플레이어 블라인드 유무
+  blindResults: true | false, // 결과 블라인드 유무
+  together: true | false, // 함께 진행 유무
+
+  on: {
+    ready: (inst: LadderDom) => { // 준비 완료 시
+      console.log(inst);
+    },
+
+    start: () => { // 시작 시
+      console.log('start');
+    },
+
+    end: () => { // 끝내기 시
+      console.log('end');
+    },
+
+    input: (input: string) => { // 인풋 시
+      console.log(input);
+    },
+
+    output: (output: string) => { // 아웃풋 시
+      console.log(output);
+    },
+  }
+
   
   // 커스텀 옵션
   customOptions: {

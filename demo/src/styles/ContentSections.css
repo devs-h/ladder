@@ -609,6 +609,49 @@
   text-decoration: underline;
 }
 
+/* 킷 그리드 스타일 */
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.kit-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.kit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #3498db;
+}
+
+.kit-card h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kit-card p {
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.kit-card .code-block {
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .swiper-guide-section {
@@ -628,5 +671,14 @@
   .code-block {
     padding: 0.75rem;
     font-size: 0.8rem;
+  }
+  
+  .kit-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .kit-card {
+    padding: 1rem;
   }
 }

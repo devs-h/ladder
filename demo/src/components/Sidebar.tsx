@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Sidebar.css';
+import '../styles/Sidebar.css';
 
 interface SidebarProps {
   activeTab: string;
@@ -37,8 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     { id: 'bun-install', label: 'Bun 설치', icon: '🍞' },
     { id: 'cdn-usage', label: 'CDN 사용', icon: '🌐' },
     { id: 'typescript', label: 'TypeScript', icon: '📘' },
-    { id: 'styling', label: '스타일링', icon: '🎨' },
-    { id: 'configuration', label: '설정', icon: '⚙️' },
+    { id: 'kits', label: '킷', icon: '🛠️' },
     { id: 'resources', label: '리소스', icon: '📚' },
   ];
 

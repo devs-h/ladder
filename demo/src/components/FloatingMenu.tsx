@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FloatingMenu.css';
+import '../styles/FloatingMenu.css';
 
 interface FloatingMenuProps {
   onSectionClick: (sectionId: string) => void;

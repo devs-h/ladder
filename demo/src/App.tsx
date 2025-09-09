@@ -16,7 +16,7 @@ export function App() {
       if (activeTab === 'home') {
         sections = ['hero', 'features', 'gallery', 'testimonials', 'faq'];
       } else if (activeTab === 'about') {
-        sections = ['npm-install', 'react-usage', 'yarn-install', 'bun-install', 'cdn-usage', 'typescript', 'configuration', 'resources'];
+        sections = ['npm-install', 'react-usage', 'yarn-install', 'bun-install', 'cdn-usage', 'typescript', 'kits', 'resources'];
       }
       
       const scrollPosition = window.scrollY + 200;
