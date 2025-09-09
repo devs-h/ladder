@@ -1,24 +1,21 @@
-import { LadderReact } from "@ladder/dom";
 import { LadderCanvas } from "@ladder/canvas";
 import { useEffect, useRef } from "react";
+import { generateRandomData } from "@ladder/utils";
 
 export function LadderKit() {
   const canvas = new LadderCanvas();
   const canvasRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     canvasRef.current?.append(canvas.canvasEl);
   }, []);
+
+  console.log(generateRandomData(
+    ["이찬웅", "문정재", "윤유진", "남창원"],
+    ["연차", "오전반차", "오후반차", "정시퇴근"]
+  ));
+
   return (
-    <LadderReact
-      players={Array(6)
-        .fill("")
-        .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
-      results={Array(6)
-        .fill("")
-        .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
-      onStart={() => canvas.draw({ width: 1000, height: 500, columns: 6 })}
-    >
-      <div ref={canvasRef} />
-    </LadderReact>
+    <div ref={canvasRef} />
   );
 }
