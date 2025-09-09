@@ -1,5 +1,5 @@
 {
-  "name": "@ladder/dom",
+  "name": "@ladder/kit",
   "type": "module",
   "sideEffects": false,
   "files": [
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@ladder/core": "workspace:*",
     "@ladder/canvas": "workspace:*",
-    "@ladder/types": "workspace:*",
+    "@ladder/common": "workspace:*",
     "@types/bun": "latest"
   },
   "peerDependencies": {

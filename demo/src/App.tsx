@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import FloatingMenu from './components/FloatingMenu';
 import ContentSections from './components/ContentSections';
+import { LadderKit } from "@ladder/kit";
 
 export function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -73,8 +74,22 @@ export function App() {
         activeSection={activeSection}
       />
       <ContentSections activeTab={activeTab} />
+      <LadderKit />
     </div>
   );
 }
 
 export default App;
+// import "./index.css";
+// import { useLayoutEffect, useRef } from "react";
+// export function App() {
+//   return (
+//     <div className="app">
+//       <div className="logo-container"></div>
+
+//       <LadderReact />
+//     </div>
+//   );
+// }
+
+// export default App;
