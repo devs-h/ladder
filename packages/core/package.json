@@ -18,12 +18,13 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "test": "vitest",
+    "test": "bun test",
     "lint": "eslint ."
   },
   "devDependencies": {
     "@ladder/common": "workspace:*",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "typescript": "^5"

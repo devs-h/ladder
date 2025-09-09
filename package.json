@@ -14,6 +14,7 @@
     "dev": "node scripts/dev.cjs",
     "dev:demo": "bun --hot demo/src/index.tsx",
     "dev:core": "bun run -F @ladder/core dev",
+    "test:core": "bun run -F @ladder/core test",
     "dev:canvas": "bun run -F @ladder/canvas dev",
     "dev:kit": "bun run -F @ladder/kit dev",
     "build:core": "bun run -F @ladder/core build",
