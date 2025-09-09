@@ -30,10 +30,8 @@
     "paths": {
       "@ladder/core": ["./packages/core/src/index.ts"],
       "@ladder/canvas": ["./packages/canvas/src/index.ts"],
-      "@ladder/common": [
-        "./packages/common/src/types/index.ts",
-        "./packages/common/src/utils/index.ts"
-      ]
+      "@ladder/common": ["./packages/common/src/types/index.ts"],
+      "@ladder/utils": ["./packages/common/src/utils/index.ts"]
     }
   }
 }
