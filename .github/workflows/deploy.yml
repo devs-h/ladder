@@ -35,7 +35,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./demo/dist/
-        server-dir: /v/_ladder/
+        server-dir: /temp/ladder/
         exclude: |
           **/.git*
           **/.git*/**
