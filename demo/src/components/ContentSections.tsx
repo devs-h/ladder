@@ -6,6 +6,7 @@ interface ContentSectionsProps {
   activeTab: string;
   onTabChange?: (tab: string) => void;
 }
+//test
 
 const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab, onTabChange }) => {
   const renderHomeContent = () => (
