@@ -1,4 +1,3 @@
-import { LadderReact } from "@ladder/dom";
 import { LadderCanvas } from "@ladder/canvas";
 import { useEffect, useRef } from "react";
 
@@ -9,16 +8,17 @@ export function LadderKit() {
     canvasRef.current?.append(canvas.canvasEl);
   }, []);
   return (
-    <LadderReact
-      players={Array(6)
-        .fill("")
-        .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
-      results={Array(6)
-        .fill("")
-        .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
-      onStart={() => canvas.draw({ width: 1000, height: 500, columns: 6 })}
-    >
-      <div ref={canvasRef} />
-    </LadderReact>
+    <div ref={canvasRef} />
+    // <LadderReact
+    //   players={Array(6)
+    //     .fill("")
+    //     .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
+    //   results={Array(6)
+    //     .fill("")
+    //     .map((x, i) => ({ id: `${i}`, value: x, poleId: `${i}` }))}
+    //   onStart={() => canvas.draw({ width: 1000, height: 500, columns: 6 })}
+    // >
+    //   <div ref={canvasRef} />
+    // </LadderReact>
   );
 }
