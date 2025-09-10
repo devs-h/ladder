@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./index.css";
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
 import FloatingMenu from './components/FloatingMenu';
 import ContentSections from './components/ContentSections';
 import { LadderKit } from "@ladder/kit";
@@ -11,38 +10,50 @@ export function App() {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    const handleScroll = () => {
-      let sections: string[] = [];
-      
-      if (activeTab === 'home') {
-        sections = ['hero', 'features', 'gallery', 'testimonials', 'faq'];
-      } else if (activeTab === 'about') {
-        sections = ['npm-install', 'react-usage', 'yarn-install', 'bun-install', 'cdn-usage', 'typescript', 'kits', 'resources'];
-      }
-      
-      const scrollPosition = window.scrollY + 200;
+    if (activeTab !== 'about') {
+      return;
+    }
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
+    const sections = ['npm-install', 'react-usage', 'yarn-install', 'typescript', 'kits', 'resources'];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let maxRatio = 0;
+        let mostVisibleSection = '';
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            mostVisibleSection = entry.target.id;
           }
-        }
-      }
-    };
+        });
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+        if (mostVisibleSection) {
+          setActiveSection(mostVisibleSection);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+      }
+    );
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, [activeTab]);
 
-  // 탭이 변경될 때 activeSection 초기화
   useEffect(() => {
-    if (activeTab === 'home') {
-      setActiveSection('hero');
-    } else if (activeTab === 'about') {
+    document.body.classList.remove('home-mode');
+    if (activeTab === 'about') {
       setActiveSection('npm-install');
     } else {
       setActiveSection('');
@@ -63,33 +74,20 @@ export function App() {
 
   return (
     <div className="app">
-      <Sidebar 
-        activeTab={activeTab} 
-        onTabChange={setActiveTab}
-        onSectionClick={handleSectionClick}
-        activeSection={activeSection}
-      />
+      {activeTab !== 'home' && (
+        <Header 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab}
+        />
+      )}
       <FloatingMenu 
         onSectionClick={handleSectionClick} 
         activeSection={activeSection}
+        activeTab={activeTab}
       />
-      <ContentSections activeTab={activeTab} />
-      <LadderKit />
+      <ContentSections activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 }
 
 export default App;
-// import "./index.css";
-// import { useLayoutEffect, useRef } from "react";
-// export function App() {
-//   return (
-//     <div className="app">
-//       <div className="logo-container"></div>
-
-//       <LadderReact />
-//     </div>
-//   );
-// }
-
-// export default App;

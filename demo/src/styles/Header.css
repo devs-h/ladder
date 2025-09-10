@@ -1,3 +1,4 @@
+
 .header {
   position: fixed;
   top: 0;
@@ -7,19 +8,20 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1000;
-  padding: 0;
-}
+  height: 70px;
 
-.header-container {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
 }
 
-.logo h1 {
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section h1 {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 700;
@@ -30,11 +32,11 @@
   background-clip: text;
 }
 
-.nav-tabs {
+.navigation-section {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
-
 .nav-tab {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -46,42 +48,56 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
-
 .nav-tab:hover {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
 }
-
 .nav-tab.active {
   background: #fbf0df;
   color: #1a1a1a;
   border-color: #fbf0df;
   font-weight: 600;
 }
-
 .nav-tab.active:hover {
   background: #f3d5a3;
   transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
-  .header-container {
-    padding: 1rem;
-    flex-direction: column;
-    gap: 1rem;
+  .header {
+    padding: 0.5rem 1rem;
   }
   
-  .nav-tabs {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .logo-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .navigation-section {
+    gap: 0.25rem;
   }
   
   .nav-tab {
-    flex: 1;
-    min-width: 80px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 60px;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem;
+  }
+  
+  .logo-section h1 {
+    font-size: 1.3rem;
+  }
+  
+  .nav-tab {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.75rem;
+    min-width: 50px;
   }
 }

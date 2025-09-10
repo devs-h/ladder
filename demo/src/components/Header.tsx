@@ -8,31 +8,27 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   const tabs = [
-    { id: 'home', label: '홈' },
     { id: 'about', label: '소개' },
-    { id: 'services', label: '데모' },
-    // { id: 'portfolio', label: '포트폴리오' },
-    // { id: 'contact', label: '연락처' }
+    { id: 'demo', label: '데모' },
   ];
 
   return (
     <header className="header">
-      <div className="header-container">
-        <div className="logo">
-          <h1>Ladder</h1>
-        </div>
-        <nav className="nav-tabs">
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => onTabChange(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </nav>
+      <div className="logo-section">
+        <h1>Ladder</h1>
       </div>
+      
+      <nav className="navigation-section">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+            onClick={() => onTabChange(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </nav>
     </header>
   );
 };

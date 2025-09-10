@@ -4,17 +4,19 @@ import '../styles/FloatingMenu.css';
 interface FloatingMenuProps {
   onSectionClick: (sectionId: string) => void;
   activeSection: string;
+  activeTab: string;
 }
 
-const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSection }) => {
+const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSection, activeTab }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const sections = [
-    { id: 'hero', label: '메인', icon: '🏠' },
-    { id: 'features', label: '기능', icon: '⚡' },
-    { id: 'gallery', label: '갤러리', icon: '🖼️' },
-    { id: 'testimonials', label: '후기', icon: '💬' },
-    { id: 'faq', label: 'FAQ', icon: '❓' }
+  const aboutSections = [
+    { id: 'npm-install', label: 'NPM 설치', icon: '📦' },
+    { id: 'react-usage', label: 'React 사용', icon: '⚛️' },
+    { id: 'yarn-install', label: 'Yarn 설치', icon: '🧶' },
+    { id: 'typescript', label: 'TypeScript', icon: '📘' },
+    { id: 'kits', label: '킷', icon: '🛠️' },
+    { id: 'resources', label: '리소스', icon: '📚' },
   ];
 
   const handleSectionClick = (sectionId: string) => {
@@ -22,9 +24,13 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSecti
     setIsOpen(false);
   };
 
+  if (activeTab !== 'about') {
+    return null;
+  }
+
   return (
     <div className={`floating-menu ${isOpen ? 'open' : ''}`}>
-      {/* <button 
+      <button 
         className="menu-toggle"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="메뉴 토글"
@@ -34,10 +40,10 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ onSectionClick, activeSecti
           <span></span>
           <span></span>
         </span>
-      </button> */}
+      </button>
       
       <div className="menu-items">
-        {sections.map(section => (
+        {aboutSections.map(section => (
           <button
             key={section.id}
             className={`menu-item ${activeSection === section.id ? 'active' : ''}`}
