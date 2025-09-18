@@ -19,63 +19,81 @@ export function generateUID() {
   return firstPartString + secondPartString;
 }
 
-/**
- * 사다리 게임용 랜덤 데이터를 생성합니다.
- * 플레이어와 결과 텍스트를 받아서 완전한 사다리 구조를 생성합니다.
- *
- * @param {string[]} playerValues - 플레이어 이름 배열
- * @param {string[]} resultValues - 결과 텍스트 배열 (playerValues와 같은 길이여야 함)
- * @param {number} [maxBars] - 생성할 bar의 최대 개수 (선택사항, 기본값: poleCount * 4)
- *
- * @returns {Object} 사다리 게임 데이터 객체
- *
- * @throws {Error} playerValues와 resultValues의 길이가 다를 때
- *
- * @example
- * ```typescript
- * const ladderData = generateRandomData(
- *   ["이찬웅", "문정재", "윤유진", "남창원"],
- *   ["연차", "오전반차", "오후반차", "정시퇴근"],
- *   6 // maxBars (선택사항)
- * );
- * ```
- */
-export function generateRandomData(playerValues: string[], resultValues: string[], maxBars?: number) {
-  if (playerValues.length !== resultValues.length) {
-    throw new Error("players and results must have the same length");
+export function generatePoleData(poleCount: number): IPole[] {
+  return Array.from({ length: poleCount }, () => ({
+    id: generateUID(),
+  }));
+}
+
+export function generatePlayerData(playerValues: string[], poles: IPole[]): IPlayer[] {
+  if (playerValues.length !== poles.length) {
+    throw new Error("players and poles must have the same length");
   }
 
-  const poleCount = playerValues.length;
-  const barsCount = maxBars || poleCount * 4;
-
-  const poles: IPole[] = Array.from({ length: poleCount }, () => ({
-    id: generateUID()
-  }));
-  const players: IPlayer[] = playerValues.map((playerText, index) => ({
+  return playerValues.map((playerText, index) => ({
     value: playerText,
     poleId: poles[index]!.id
   }));
-  const results: IResult[] = resultValues.map((resultText, index) => ({
+}
+
+export function generateResultData(resultValues: string[], poles: IPole[]): IResult[] {
+  if (resultValues.length !== poles.length) {
+    throw new Error("results and poles must have the same length");
+  }
+
+  return resultValues.map((resultText, index) => ({
     value: resultText,
     poleId: poles[index]!.id
   }));
-  const bars: Array<IBar> = [];
+}
 
-  for (let i = 0; i < barsCount; i++) {
-    const randomPoleCount = Math.floor(Math.random() * (poleCount - 1));
+export function generateBarData(poles: IPole[], maxBars?: number): IBar[] {
+  if (poles.length < 2) {
+    throw new Error("poles must have at least 2 elements");
+  }
 
-    bars.push({
-      pole1Id: poles[randomPoleCount]!.id,
-      pole2Id: poles[randomPoleCount + 1]!.id,
+  return Array.from({ length: maxBars || poles.length * 4 }, () => {
+    const randomPoleIndex = Math.floor(Math.random() * poles.length);
+    const newY = Math.floor(Math.random() * 1000) / 1000;
+
+    return {
+      pole1Id: poles[randomPoleIndex]!.id,
+      pole2Id: poles[randomPoleIndex + 1]!.id,
       pole1Y: Math.floor(Math.random() * 1000) / 1000,
       pole2Y: Math.floor(Math.random() * 1000) / 1000
-    });
+    };
+  });
+}
+
+export function generateBarDataWithDiagonal(poles: IPole[], maxBars?: number): IBar[] {
+  if (poles.length < 2) {
+    throw new Error("poles must have at least 2 elements");
   }
+
+  return Array.from({ length: maxBars || poles.length * 4 }, () => {
+    const randomPoleIndex = Math.floor(Math.random() * poles.length);
+    const isDiagonal = Math.random() < 0.5;
+    const newY = Math.floor(Math.random() * 1000) / 1000;
+
+    return {
+      pole1Id: poles[randomPoleIndex]!.id,
+      pole2Id: poles[randomPoleIndex + 1]!.id,
+      pole1Y: Math.floor(Math.random() * 1000) / 1000,
+      pole2Y: Math.floor(Math.random() * 1000) / 1000
+    };
+  });
+}
+
+export function generateRandomData(playerValues: string[], resultValues: string[], maxBars?: number) {
+  const poles = generatePoleData(playerValues.length);
+  const players = generatePlayerData(playerValues, poles);
+  const results = generateResultData(resultValues, poles);
+  const bars = generateBarData(poles, maxBars);
 
   return {
     poles,
-    bars,
     players,
-    results
+    results,
+    bars
   };
 }
