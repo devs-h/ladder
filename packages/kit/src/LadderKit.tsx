@@ -12,7 +12,11 @@ export function LadderKit() {
 
   console.log(generateRandomData(
     ["이찬웅", "문정재", "윤유진", "남창원"],
-    ["연차", "오전반차", "오후반차", "정시퇴근"]
+    ["연차", "오전반차", "오후반차", "정시퇴근"],
+    {
+      maxBars: 16,
+      offset: 0.005
+    }
   ));
 
   return (
