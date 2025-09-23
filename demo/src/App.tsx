@@ -10,7 +10,6 @@ export function App() {
 
 export default App;
 // import "./index.css";
-// import { LadderReact } from "@ladder/dom";
 // import { useLayoutEffect, useRef } from "react";
 // export function App() {
 //   return (

@@ -23,29 +23,32 @@ export const getNextStep = (
   if (bars.length === 0 || !bars) return null;
 
   const targetBars = bars.filter(
-    (bar) => bar.poleIds.includes(curPole) && bar.y.some((y) => y > curY),
+    (bar) =>
+      (bar.pole1Id === curPole || bar.pole2Id === curPole) &&
+      (bar.pole1Y > curY || bar.pole2Y > curY),
   );
 
   const barsGoingRight = targetBars
-    .filter((bar) => bar.poleIds[0] === curPole && bar.y[0]! > curY)
-    .sort((a, b) => a.y[0]! - b.y[0]!);
+    .filter((bar) => bar.pole1Id === curPole && bar.pole1Y > curY)
+    .sort((a, b) => a.pole1Y - b.pole1Y);
 
   const barsGoingLeft = targetBars
-    .filter((bar) => bar.poleIds[1] === curPole && bar.y[1]! > curY)
-    .sort((a, b) => a.y[1]! - b.y[1]!);
+    .filter((bar) => bar.pole2Id === curPole && bar.pole2Y > curY)
+    .sort((a, b) => a.pole2Y - b.pole2Y);
 
-  const minGoingLeft = barsGoingLeft.length > 0 ? barsGoingLeft[0]?.y[1] : 1;
-  const minGoingRight = barsGoingRight.length > 0 ? barsGoingRight[0]?.y[0] : 1;
+  const minGoingLeft = barsGoingLeft.length > 0 ? barsGoingLeft[0]?.pole2Y : 1;
+  const minGoingRight =
+    barsGoingRight.length > 0 ? barsGoingRight[0]?.pole1Y : 1;
 
   const nextStep =
     minGoingLeft! < minGoingRight!
       ? {
-          nextPole: barsGoingLeft[0]?.poleIds[0]!,
-          nextY: barsGoingLeft[0]?.y[0],
+          nextPole: barsGoingLeft[0]?.pole1Id!,
+          nextY: barsGoingLeft[0]?.pole1Y,
         }
       : {
-          nextPole: barsGoingRight[0]?.poleIds[1]!,
-          nextY: barsGoingRight[0]?.y[1],
+          nextPole: barsGoingRight[0]?.pole2Id!,
+          nextY: barsGoingRight[0]?.pole2Y,
         };
 
   if (!nextStep.nextPole || !nextStep.nextY)

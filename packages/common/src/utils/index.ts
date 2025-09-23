@@ -9,5 +9,5 @@ export function polesToPixel(poles: IPole[], gap: number) {
 }
 
 export function barsToPixel(bars: IBar[], maxY: number) {
-  return bars.map((bar) => ({ y: bar.y.map((y) => y * maxY) }));
+  return bars.map((bar) => ({ y: bar.pole1Y * maxY, y2: bar.pole2Y * maxY }));
 }
