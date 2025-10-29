@@ -1,8 +1,26 @@
 {
-  "name": "ladder-workspace",
-  "version": "0.1.0",
+  "name": "ladder-play",
+  "version": "0.0.1",
+  "description": "Ladder Game",
+  
   "private": true,
-  "type": "module",
+  "main": "packages/kit/dist/index.cjs",
+
+  "author": "hk-frontend",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devs-h/ladder"
+  },
+  "keywords": [
+    "ladder",
+    "ladder-game",
+    "ladder-play"
+  ],
+  "bugs": {
+    "url": "https://github.com/devs-h/ladder/issues"
+  },
+  "homepage": "https://github.com/devs-h/ladder/#readme",
   "workspaces": [
     "packages/*",
     "demo"
