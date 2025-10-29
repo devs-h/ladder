@@ -17,6 +17,7 @@
 
 1. 공통 패키지.
    1. 타입스
+1. 3000 포트가 디폴트
 
 "dev": "node scripts/dev.cjs", // demo + 원하는 패키지 실행 bun dev kit
 "dev:demo": "bun --hot demo/src/index.tsx", // 데모만 실행
