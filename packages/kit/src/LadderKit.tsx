@@ -1,32 +1,37 @@
 import { type ILadder } from "@ladder/common";
 import { LadderCanvas } from "@ladder/canvas";
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
-const mockLadder = {
+const mockLadder: ILadder = {
   poles: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }],
   bars: [
-    { poleIds: ["0", "1"] as [string, string], y: [0.152, 0.178] as [number, number] },
-    { poleIds: ["1", "2"] as [string, string], y: [0.305, 0.452] as [number, number] },
-    { poleIds: ["1", "2"] as [string, string], y: [0.497, 0.551] as [number, number] },
-    { poleIds: ["2", "3"] as [string, string], y: [0.604, 0.703] as [number, number] },
-    { poleIds: ["1", "2"] as [string, string], y: [0.754, 0.799] as [number, number] },
-    { poleIds: ["2", "3"] as [string, string], y: [0.849, 0.903] as [number, number] },
-    { poleIds: ["2", "3"] as [string, string], y: [0.952, 0.971] as [number, number] },
-  ],  
+    { pole1Id: "0", pole2Id: "1", pole1Y: 0.152, pole2Y: 0.178 },
+    { pole1Id: "1", pole2Id: "2", pole1Y: 0.305, pole2Y: 0.452 },
+    { pole1Id: "1", pole2Id: "2", pole1Y: 0.497, pole2Y: 0.551 },
+    { pole1Id: "2", pole2Id: "3", pole1Y: 0.604, pole2Y: 0.703 },
+    { pole1Id: "1", pole2Id: "2", pole1Y: 0.754, pole2Y: 0.799 },
+    { pole1Id: "2", pole2Id: "3", pole1Y: 0.849, pole2Y: 0.903 },
+    { pole1Id: "2", pole2Id: "3", pole1Y: 0.952, pole2Y: 0.971 },
+  ],
   players: [
-    { id: "0", value: "문찬웅", poleId: "0" },
-    { id: "1", value: "이정재", poleId: "1" },
-    { id: "2", value: "남유진", poleId: "2" },
-    { id: "3", value: "윤창원", poleId: "3" },
+    { value: "문찬웅", poleId: "0" },
+    { value: "이정재", poleId: "1" },
+    { value: "남유진", poleId: "2" },
+    { value: "윤창원", poleId: "3" },
   ],
   results: [
-    { id: "0", value: "연차", poleId: "0" },
-    { id: "1", value: "오전반차", poleId: "1" },
-    { id: "2", value: "오후반차", poleId: "2" },
-    { id: "3", value: "정시퇴근", poleId: "3" },
+    { value: "연차", poleId: "0" },
+    { value: "오전반차", poleId: "1" },
+    { value: "오후반차", poleId: "2" },
+    { value: "정시퇴근", poleId: "3" },
   ],
 };
-
 
 export function LadderKit() {
   const canvas = new LadderCanvas();
@@ -40,7 +45,7 @@ export function LadderKit() {
     <LadderReact
       players={mockLadder.players}
       results={mockLadder.results}
-      onStart={() =>
+      onStart={() => {
         canvas.drawFromData(mockLadder, {
           width: 1000,
           height: 500,
@@ -48,8 +53,9 @@ export function LadderKit() {
           color: "#333",
           font: "14px sans-serif",
           fontColor: "#000",
-        })
-      }
+        });
+        console.log("dwadawd");
+      }}
     >
       <div ref={canvasRef} />
     </LadderReact>
@@ -72,9 +78,19 @@ export interface LadderReactProps extends Partial<ILadder> {
 
 export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
   function LadderReact(
-    { children, players, results, className, onStart, onPause },
+    {
+      children,
+      players: initialPlayers,
+      results: initialResults,
+      className,
+      onStart,
+      onPause,
+    },
     ref
   ) {
+    const [players, setPlayers] = useState(initialPlayers);
+    const [results, setResults] = useState(initialResults);
+
     const handleStart = () => {};
     const handleStop = () => {
       onPause?.();
@@ -92,6 +108,23 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
     useEffect(() => {
       onStart?.();
     }, []);
+
+    const handlePlayerChange = (index: number, value: string) => {
+      setPlayers((prevPlayers) =>
+        prevPlayers?.map((player, i) =>
+          i === index ? { ...player, value } : player
+        )
+      );
+    };
+
+    const handleResultChange = (index: number, value: string) => {
+      setResults((prevResults) =>
+        prevResults?.map((result, i) =>
+          i === index ? { ...result, value } : result
+        )
+      );
+    };
+
     return (
       <div className={className}>
         <div className="flex">
@@ -101,7 +134,7 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
               type="text"
               key={`player-${index}-${player.poleId}`}
               defaultValue={player.value}
-              onChange={({ target }) => (player.value = target.value)}
+              onChange={({ target }) => handlePlayerChange(index, target.value)}
             />
           ))}
         </div>
@@ -113,7 +146,7 @@ export const LadderReact = forwardRef<LadderHandle, LadderReactProps>(
               type="text"
               key={`result-${index}-${result.poleId}`}
               defaultValue={result.value}
-              onChange={({ target }) => (result.value = target.value)}
+              onChange={({ target }) => handleResultChange(index, target.value)}
             />
           ))}
         </div>

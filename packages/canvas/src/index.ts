@@ -74,10 +74,12 @@ export class LadderCanvas {
     // 가로줄 그리기
     for (const bar of ladder.bars) {
       // 가로줄이 연결된 두 세로줄의 ID
-      const [fromPole, toPole] = bar.poleIds as [string, string];
+      const fromPole = bar.pole1Id;
+      const toPole = bar.pole2Id;
 
       // 가로줄 위치 y 값 (두 점)
-      const [y1, y2] = bar.y;
+      const y1 = bar.pole1Y;
+      const y2 = bar.pole2Y;
 
       // 각 세로줄의 x 좌표 가져오기
       const x1 = xPositions[fromPole];
