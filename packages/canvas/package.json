@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@ladder/common": "workspace:*",
-    "@ladder/utils": "workspace:*",
     "@types/bun": "latest"
   },
   "peerDependencies": {
