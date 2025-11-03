@@ -1,6 +1,6 @@
-import React from 'react';
-import { LadderKit } from "@ladder/kit";
-import '../styles/ContentSections.css';
+import React from "react";
+import { LadderReact } from "@ladder/kit";
+import "../styles/ContentSections.css";
 
 interface ContentSectionsProps {
   activeTab: string;
@@ -8,7 +8,10 @@ interface ContentSectionsProps {
 }
 //test
 
-const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab, onTabChange }) => {
+const ContentSections: React.FC<ContentSectionsProps> = ({
+  activeTab,
+  onTabChange,
+}) => {
   const renderHomeContent = () => (
     <div className="content-section home-section">
       <section id="hero" className="hero-section">
@@ -19,9 +22,9 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab, onTabChang
         </div>
         <div className="hero-content">
           <h1>Ladder-play 오신것을 환영합니다</h1>
-          <button 
+          <button
             className="cta-button"
-            onClick={() => onTabChange && onTabChange('about')}
+            onClick={() => onTabChange && onTabChange("about")}
           >
             시작하기
           </button>
@@ -35,30 +38,35 @@ const ContentSections: React.FC<ContentSectionsProps> = ({ activeTab, onTabChang
       <section className="about-section">
         <h1>Getting started</h1>
       </section>
-      
-        <section className="swiper-guide-section">
-          <h2>Installation</h2>
-          <div id="npm-install" className="guide-section">
-            <h3>📦 NPM 설치</h3>
-            <div className="code-block">
-              <pre><code>npm install ladder-play</code></pre>
-            </div>
-            {/* <p>React 프로젝트에서 Ladder 라이브러리를 설치합니다:</p>
+
+      <section className="swiper-guide-section">
+        <h2>Installation</h2>
+        <div id="npm-install" className="guide-section">
+          <h3>📦 NPM 설치</h3>
+          <div className="code-block">
+            <pre>
+              <code>npm install ladder-play</code>
+            </pre>
+          </div>
+          {/* <p>React 프로젝트에서 Ladder 라이브러리를 설치합니다:</p>
             <div className="code-block">
               <pre><code>{`import { LadderCore } from '@ladder-play/core';
 import { LadderReact } from '@ladder-play/react';
 import { LadderVue } from '@ladder-play/vue';`}</code></pre>
             </div> */}
-          </div>
+        </div>
 
-          <div id="react-usage" className="guide-section">
-            <h3>🔧 React에서 사용하기</h3>
-            <p>React 컴포넌트에서 Ladder를 사용하는 방법:</p>
-            <div className="code-block">
-              <pre><code>{`import { LadderReact } from '@ladder-play/react;`}</code></pre>
-            </div>
-            <div className="code-block">
-              <pre><code>{`function MyComponent() {
+        <div id="react-usage" className="guide-section">
+          <h3>🔧 React에서 사용하기</h3>
+          <p>React 컴포넌트에서 Ladder를 사용하는 방법:</p>
+          <div className="code-block">
+            <pre>
+              <code>{`import { LadderReact } from '@ladder-play/react;`}</code>
+            </pre>
+          </div>
+          <div className="code-block">
+            <pre>
+              <code>{`function MyComponent() {
   return (
     <div>
       <h1>My Ladder App</h1>
@@ -67,23 +75,29 @@ import { LadderVue } from '@ladder-play/vue';`}</code></pre>
   );
 }
 
-export default MyComponent;`}</code></pre>
-            </div>
+export default MyComponent;`}</code>
+            </pre>
           </div>
+        </div>
 
-          <div id="yarn-install" className="guide-section">
-            <h3>📦 Yarn 설치 방법</h3>
-            <p>Yarn을 사용하는 경우:</p>
-            <div className="code-block">
-              <pre><code>yarn add @ladder/kit @ladder/core @ladder/canvas @ladder/types</code></pre>
-            </div>
+        <div id="yarn-install" className="guide-section">
+          <h3>📦 Yarn 설치 방법</h3>
+          <p>Yarn을 사용하는 경우:</p>
+          <div className="code-block">
+            <pre>
+              <code>
+                yarn add @ladder/kit @ladder/core @ladder/canvas @ladder/types
+              </code>
+            </pre>
           </div>
+        </div>
 
-          <div id="typescript" className="guide-section">
-            <h3>🏗️ TypeScript 사용</h3>
-            <p>TypeScript 프로젝트에서 타입 정의 사용:</p>
-            <div className="code-block">
-              <pre><code>{`import { LadderReact } from '@ladder/kit';
+        <div id="typescript" className="guide-section">
+          <h3>🏗️ TypeScript 사용</h3>
+          <p>TypeScript 프로젝트에서 타입 정의 사용:</p>
+          <div className="code-block">
+            <pre>
+              <code>{`import { LadderReact } from '@ladder/kit';
 import type { LadderConfig, LadderOptions } from '@ladder/types';
 
 const config: LadderConfig = {
@@ -92,15 +106,16 @@ const config: LadderConfig = {
 
 function MyComponent() {
   return <LadderReact config={config} />;
-}`}</code></pre>
-            </div>
+}`}</code>
+            </pre>
           </div>
+        </div>
 
-
-          <div id="kits" className="guide-section">
-            <h3>⚙️ 설정 및 초기화</h3>
-            <div className="code-block">
-              <pre><code>{`import { LadderReact } from '@ladder/kit';
+        <div id="kits" className="guide-section">
+          <h3>⚙️ 설정 및 초기화</h3>
+          <div className="code-block">
+            <pre>
+              <code>{`import { LadderReact } from '@ladder/kit';
 
 const ladderConfig = {
   // 기본 설정
@@ -148,18 +163,51 @@ function App() {
       <LadderReact config={ladderConfig} />
     </div>
   );
-}`}</code></pre>
-            </div>
+}`}</code>
+            </pre>
           </div>
+        </div>
 
-          <div id="resources" className="guide-section">
-            <h3>📚 추가 리소스</h3>
-            <ul className="resource-list">
-              <li><a href="https://github.com/ladder-org/ladder" target="_blank" rel="noopener noreferrer">GitHub 저장소</a></li>
-              <li><a href="https://ladder.dev/docs" target="_blank" rel="noopener noreferrer">공식 문서</a></li>
-              <li><a href="https://ladder.dev/examples" target="_blank" rel="noopener noreferrer">예제 모음</a></li>
-              <li><a href="https://ladder.dev/api" target="_blank" rel="noopener noreferrer">API 레퍼런스</a></li>
-            </ul>
+        <div id="resources" className="guide-section">
+          <h3>📚 추가 리소스</h3>
+          <ul className="resource-list">
+            <li>
+              <a
+                href="https://github.com/ladder-org/ladder"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub 저장소
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ladder.dev/docs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                공식 문서
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ladder.dev/examples"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                예제 모음
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://ladder.dev/api"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                API 레퍼런스
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
     </div>
@@ -169,27 +217,48 @@ function App() {
     <div className="content-section">
       <section className="services-section">
         <h1>데모</h1>
-        <LadderKit />
+        <LadderReact
+          data={{
+            poles: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }],
+            bars: [
+              { pole1Id: "0", pole2Id: "1", pole1Y: 0.152, pole2Y: 0.178 },
+              { pole1Id: "1", pole2Id: "2", pole1Y: 0.305, pole2Y: 0.452 },
+              { pole1Id: "1", pole2Id: "2", pole1Y: 0.497, pole2Y: 0.551 },
+              { pole1Id: "2", pole2Id: "3", pole1Y: 0.604, pole2Y: 0.703 },
+              { pole1Id: "1", pole2Id: "2", pole1Y: 0.754, pole2Y: 0.799 },
+              { pole1Id: "2", pole2Id: "3", pole1Y: 0.849, pole2Y: 0.903 },
+              { pole1Id: "2", pole2Id: "3", pole1Y: 0.952, pole2Y: 0.971 },
+            ],
+            players: [
+              { value: "문찬웅", poleId: "0" },
+              { value: "이정재", poleId: "1" },
+              { value: "남유진", poleId: "2" },
+              { value: "윤창원", poleId: "3" },
+            ],
+            results: [
+              { value: "연차", poleId: "0" },
+              { value: "오전반차", poleId: "1" },
+              { value: "오후반차", poleId: "2" },
+              { value: "정시퇴근", poleId: "3" },
+            ],
+          }}
+        />
       </section>
     </div>
   );
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'about':
+      case "about":
         return renderAboutContent();
-      case 'demo':
+      case "demo":
         return renderServicesContent();
       default:
         return renderHomeContent();
     }
   };
 
-  return (
-    <main className={`main-content`}>
-      {renderContent()}
-    </main>
-  );
+  return <main className={`main-content`}>{renderContent()}</main>;
 };
 
 export default ContentSections;

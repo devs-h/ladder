@@ -19,8 +19,9 @@
     "@ladder/kit": "workspace:*"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/bun": "latest"
+    "vue": "^3.5.22"
   }
 }

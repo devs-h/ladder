@@ -1,1 +1,1 @@
-export { LadderKit } from "./LadderKit";
+export { LadderReact } from "./LadderReact";

@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import Header from './components/Header';
-import FloatingMenu from './components/FloatingMenu';
-import ContentSections from './components/ContentSections';
-import { LadderKit } from "@ladder/kit";
+import Header from "./components/Header";
+import FloatingMenu from "./components/FloatingMenu";
+import ContentSections from "./components/ContentSections";
+// import { LadderKit } from "@ladder/kit";
 
 export function App() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeTab, setActiveTab] = useState("home");
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    if (activeTab !== 'about') {
+    if (activeTab !== "about") {
       return;
     }
 
-    const sections = ['npm-install', 'react-usage', 'yarn-install', 'typescript', 'kits', 'resources'];
-    
+    const sections = [
+      "npm-install",
+      "react-usage",
+      "yarn-install",
+      "typescript",
+      "kits",
+      "resources",
+    ];
+
     const observer = new IntersectionObserver(
       (entries) => {
         let maxRatio = 0;
-        let mostVisibleSection = '';
+        let mostVisibleSection = "";
 
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
@@ -34,8 +41,8 @@ export function App() {
       },
       {
         root: null,
-        rootMargin: '-20% 0px -20% 0px',
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+        rootMargin: "-20% 0px -20% 0px",
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
       }
     );
 
@@ -52,11 +59,11 @@ export function App() {
   }, [activeTab]);
 
   useEffect(() => {
-    document.body.classList.remove('home-mode');
-    if (activeTab === 'about') {
-      setActiveSection('npm-install');
+    document.body.classList.remove("home-mode");
+    if (activeTab === "about") {
+      setActiveSection("npm-install");
     } else {
-      setActiveSection('');
+      setActiveSection("");
     }
   }, [activeTab]);
 
@@ -67,21 +74,18 @@ export function App() {
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   return (
     <div className="app">
-      {activeTab !== 'home' && (
-        <Header 
-          activeTab={activeTab} 
-          onTabChange={setActiveTab}
-        />
+      {activeTab !== "home" && (
+        <Header activeTab={activeTab} onTabChange={setActiveTab} />
       )}
-      <FloatingMenu 
-        onSectionClick={handleSectionClick} 
+      <FloatingMenu
+        onSectionClick={handleSectionClick}
         activeSection={activeSection}
         activeTab={activeTab}
       />
